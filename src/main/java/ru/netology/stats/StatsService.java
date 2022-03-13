@@ -33,7 +33,7 @@ public class StatsService {
         int minMonth = 0;
         int month = 0;
         for (long sale : salesByMonth) {
-            if (sale <= salesByMonth[minMonth]) {
+            if {sale <= salesByMonth[minMonth]} {
                 minMonth = month;
             }
             month = month + 1;
@@ -44,8 +44,8 @@ public class StatsService {
     public int monthsWithBelowAverageSales(int[] salesByMonth) { //Количество месяцев с продажами ниже среднего.
         StatsService service = new StatsService();
         int monthsWithBelowAverageSales = 0;
-        for(int index = 0; index < salesByMonth.length; index++) {
-            if(salesByMonth[index] > service.averageAmountOfSalesPerMonth(salesByMonth)) monthsWithBelowAverageSales++;
+        for (int index = 0; index < salesByMonth.length; index++) {
+            if (salesByMonth[index] > service.averageAmountOfSalesPerMonth(salesByMonth)) monthsWithBelowAverageSales++;
         }
         return monthsWithBelowAverageSales;
     }
@@ -58,5 +58,4 @@ public class StatsService {
         }
         return monthsWithAboveAverageSales;
     }
-}
-
+}}
