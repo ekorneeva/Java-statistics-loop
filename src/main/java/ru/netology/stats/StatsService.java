@@ -2,60 +2,71 @@ package ru.netology.stats;
 
 public class StatsService {
 
-    public int sumOfAll(int[] salesByMonth) { //Метод ля вычисления суммы всех продаж.
-        int sumOfAll = 0;
-        for (int index = 0; index < salesByMonth.length; index++) {
-            sumOfAll = sumOfAll + salesByMonth[index];
+    public int calculateSum(int[] sales) {
+        int sum = 0;
+        for (int sale : sales) {
+            // sum = sum + sale;
+            sum += sale;   // общая сумма всех продаж
         }
-        return sumOfAll;
+        return sum;
     }
 
-    public double averageAmountOfSalesPerMonth(int[] salesByMonth) { //Метод ля вычисления средней суммы продаж в месяц.
-        double averageAmountOfSalesPerMonth;
-        StatsService service = new StatsService();
-        averageAmountOfSalesPerMonth = service.sumOfAll(salesByMonth) / salesByMonth.length;
-        return averageAmountOfSalesPerMonth;
+    public int calcAvg(int[] sales) {
+        return calculateSum(sales) / sales.length; // средняя сумма продаж
     }
 
-    public int monthWithTheMaximumSales(int[] salesByMonth) { //Метод ля вычисления номера месяца с максимальными продажами.
-        int maxMonth = 0;
-        int month = 0;
-        for (long sale : salesByMonth) {
-            if (sale >= salesByMonth[maxMonth]) {
-                maxMonth = month;
-            }
-            month = month + 1;
-        }
-        return maxMonth + 1;
-    }
 
-    public int monthWithTheMinimumSales(int[] salesByMonth) { //Метод ля вычисления номера месяца с минимальными продажами.
+    public int minSales(int[] sales) {
         int minMonth = 0;
-        int month = 0;
-        for (long sale : salesByMonth) {
-            if {sale <= salesByMonth[minMonth]} {
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        for (long sale : sales) {
+            // sales[minMonth] - продажи в месяце minMonth
+            // sale - продажи в рассматриваемом месяце
+            if (sale <= sales[minMonth]) {
                 minMonth = month;
             }
-            month = month + 1;
+            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
         }
         return minMonth + 1;
     }
 
-    public int monthsWithBelowAverageSales(int[] salesByMonth) { //Количество месяцев с продажами ниже среднего.
-        StatsService service = new StatsService();
-        int monthsWithBelowAverageSales = 0;
-        for (int index = 0; index < salesByMonth.length; index++) {
-            if (salesByMonth[index] > service.averageAmountOfSalesPerMonth(salesByMonth)) monthsWithBelowAverageSales++;
+    public int maxSales(int[] sales) {
+        int maxMonth = 0;
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        for (long sale : sales) {
+            // sales[maxMonth] - продажи в месяце maxMonth
+            // sale - продажи в рассматриваемом месяце
+            if (sale >= sales[maxMonth]) {
+                maxMonth = month;
+            }
+            month = month + 1; // следующий рассматриваемый месяц имеет номер на 1 больше
         }
-        return monthsWithBelowAverageSales;
+        return maxMonth + 1;
     }
 
-    public int monthsWithAboveAverageSales(int[] salesByMonth) { //Количество месяцев с продажами выше среднего.
-        StatsService service = new StatsService();
-        int monthsWithAboveAverageSales = 0;
-        for (int index = 0; index < salesByMonth.length; index++) {
-            if (salesByMonth[index] < service.averageAmountOfSalesPerMonth(salesByMonth)) monthsWithAboveAverageSales++;
+    public int calcAvgMin(int[] sales) {
+        int sumMonth = 0;
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        for (int sale : sales) {    // для каждой продажи из массива продаж
+            if (sale < calcAvg(sales)) {  // будем сравнивать продажу со средним значением
+                month = 1;
+                sumMonth += month;
+
+            }
         }
-        return monthsWithAboveAverageSales;
+        return sumMonth;
     }
-}}
+
+    public int calcAvgMax(int[] sales) {
+        int sumMonth = 0;
+        int month = 0; // переменная для индекса рассматриваемого месяца в массиве
+        for (int sale : sales) {    // для каждой продажи из массива продаж
+            if (sale > calcAvg(sales)) {  // будем сравнивать продажу со средним значением
+                month = 1;
+                sumMonth += month;
+
+            }
+        }
+        return sumMonth;
+    }
+}
